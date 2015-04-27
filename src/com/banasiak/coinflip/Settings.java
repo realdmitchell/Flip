@@ -77,7 +77,6 @@ public class Settings extends PreferenceActivity implements
 
     private static final boolean KEY_TEXT_DEF = true;
 
-    private static final String KEY_VIBRATE = "vibrate";
 
     private static final boolean KEY_VIBRATE_DEF = true;
 
@@ -206,14 +205,7 @@ public class Settings extends PreferenceActivity implements
         return result;
     }
 
-    // get the current value of the sound preference
-    public static boolean getSoundPref(final Context context) {
-        Log.d(TAG, "getSoundPref()");
-        final Boolean result = PreferenceManager.getDefaultSharedPreferences(
-                context).getBoolean(KEY_SOUND, KEY_SOUND_DEF);
-        Log.d(TAG, "result=" + result);
-        return result;
-    }
+
 
     // get the current value of the text preference
     public static boolean getTextPref(final Context context) {
@@ -224,14 +216,6 @@ public class Settings extends PreferenceActivity implements
         return result;
     }
 
-    // get the current value of the vibrate preference
-    public static boolean getVibratePref(final Context context) {
-        Log.d(TAG, "getVibratePref()");
-        final Boolean result = PreferenceManager.getDefaultSharedPreferences(
-                context).getBoolean(KEY_VIBRATE, KEY_VIBRATE_DEF);
-        Log.d(TAG, "result=" + result);
-        return result;
-    }
 
     // get the current value of the shake sensitivity preference
     public static int getShakePref(final Context context) {

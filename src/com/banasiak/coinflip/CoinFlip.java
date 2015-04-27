@@ -103,11 +103,8 @@ public class CoinFlip extends Activity {
 
     private LinearLayout statsLayout;
 
-    private SoundPool soundPool;
 
-    private int soundCoin;
 
-    private int soundOneUp;
 
     private int flipCounter = 0;
 
@@ -264,11 +261,7 @@ public class CoinFlip extends Activity {
         // pause the shake listener until the result is rendered
         pauseListeners();
 
-        // vibrate if enabled
-        if (Settings.getVibratePref(this)) {
-        	// no vibrate
-            //vibrator.vibrate(100);
-        }
+
 
         // flip the coin and update the state with the result
         boolean flipResult = theCoin.flip();
