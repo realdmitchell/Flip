@@ -36,4 +36,9 @@ public class Coin {
         return generator.nextBoolean();
     }
 
+    public int i() {
+        //Log.d(TAG, "flip()");
+        return generator.nextInt(10);
+    }
+
 }

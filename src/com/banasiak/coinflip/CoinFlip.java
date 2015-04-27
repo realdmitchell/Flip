@@ -274,6 +274,9 @@ public class CoinFlip extends Activity {
 
         // flip the coin and update the state with the result
         boolean flipResult = theCoin.flip();
+        int flipResult_i = theCoin.i();
+        Log.d(TAG, "INTEGER " + flipResult_i );
+
         if (flipResult) {
             headsCounter++;
         } else {
@@ -801,7 +804,7 @@ public class CoinFlip extends Activity {
             coinAnimationCustom = new CustomAnimationDrawable(coinAnimation) {
                 @Override
                 void onAnimationFinish() {
-                    playCoinSound();
+                  //  playCoinSound();
                     updateResultText(resultState);
                     resumeListeners();
                 }
@@ -867,6 +870,8 @@ public class CoinFlip extends Activity {
         }
     }
 
+    
+    // DO IT HERE
     private void updateResultText(final ResultState resultState) {
         Log.d(TAG, "updateResultText()");
 
