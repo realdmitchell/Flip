@@ -218,8 +218,6 @@ public class CoinFlip extends Activity {
         // initialize the coin image and result text views
         initViews();
 
-        // initialize the sounds
-        initSounds();
 
         // initialize the coin maps
         coinAnimationsMap = new EnumMap<CoinFlip.ResultState, AnimationDrawable>(ResultState.class);
@@ -274,8 +272,6 @@ public class CoinFlip extends Activity {
 
         // flip the coin and update the state with the result
         boolean flipResult = theCoin.flip();
-        int flipResult_i = theCoin.i();
-        Log.d(TAG, "INTEGER " + flipResult_i );
 
         if (flipResult) {
             headsCounter++;
@@ -288,12 +284,13 @@ public class CoinFlip extends Activity {
         
         // update the screen with the result of the flip
         renderResult(resultState);
-        sendResult(flipResult_i);
+        
+        
+
     }
 
-    private void sendResult(int flipResult_i) {
-		// TODO Auto-generated method stub
-
+    private void sendResult(final int flipResult_i) {
+    		
             switch (flipResult_i) {
             	case 0:
             		resultText.setText("Green Thai");
@@ -839,6 +836,11 @@ public class CoinFlip extends Activity {
                 @Override
                 void onAnimationFinish() {
                   //  playCoinSound();
+
+                    final int flipResult_i = theCoin.i();
+                    Log.d(TAG, "INTEGER " + flipResult_i );
+                    sendResult(flipResult_i);
+
                     updateResultText(resultState);
                     resumeListeners();
                 }
@@ -855,43 +857,9 @@ public class CoinFlip extends Activity {
         }
     }
 
-    private void initSounds() {
-        // MediaPlayer was causing ANR issues on some devices.
-        // SoundPool should be more efficient.
 
-        Log.d(TAG, "initSounds()");
-        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 100);
-        soundCoin = soundPool.load(this, R.raw.coin, 1);
-        soundOneUp = soundPool.load(this, R.raw.oneup, 1);
 
-    }
 
-    private void playSound(final int sound) {
-        Log.d(TAG, "playSound()");
-        if (Settings.getSoundPref(this)) {
-            final AudioManager mgr = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-            final float streamVolumeCurrent = mgr.getStreamVolume(AudioManager.STREAM_MUSIC);
-            final float streamVolumeMax = mgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            final float volume = streamVolumeCurrent / streamVolumeMax;
-
-            soundPool.play(sound, volume, volume, 1, 0, 1f);
-        }
-    }
-
-    private void playCoinSound() {
-        Log.d(TAG, "playCoinSound()");
-
-        synchronized (this) {
-            if (flipCounter < 100) {
-                playSound(soundCoin);
-            } else {
-                // Happy Easter! (For Ryan)
-                // Toast.makeText(this, "1-UP", Toast.LENGTH_SHORT).show();
-                playSound(soundOneUp);
-                flipCounter = 0;
-            }
-        }
-    }
 
     
     // DO IT HERE
@@ -919,6 +887,8 @@ public class CoinFlip extends Activity {
 
         updateStatsText();
 
+        
+        
     }
 
     private void updateStatsText() {
