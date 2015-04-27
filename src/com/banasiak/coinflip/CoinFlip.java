@@ -268,7 +268,8 @@ public class CoinFlip extends Activity {
 
         // vibrate if enabled
         if (Settings.getVibratePref(this)) {
-            vibrator.vibrate(100);
+        	// no vibrate
+            //vibrator.vibrate(100);
         }
 
         // flip the coin and update the state with the result

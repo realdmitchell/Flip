@@ -41,7 +41,7 @@
             android:key="vibrate"
             android:title="@string/settings_item_vibrate_title"
             android:summary="@string/settings_item_vibrate_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
         <com.banasiak.coinflip.SliderPreference
             android:key="shake"
             android:defaultValue="2"
