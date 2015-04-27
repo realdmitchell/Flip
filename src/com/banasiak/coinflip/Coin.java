@@ -38,7 +38,7 @@ public class Coin {
 
     public int i() {
         //Log.d(TAG, "flip()");
-        return generator.nextInt(10);
+        return generator.nextInt(5);
     }
 
 }

@@ -284,13 +284,47 @@ public class CoinFlip extends Activity {
         }
         Log.d(TAG, "headsCounter=" + headsCounter + " | tailsCounter=" + tailsCounter);
         resultState = updateState(flipResult);
-
+// DO IT HERE
+        
         // update the screen with the result of the flip
         renderResult(resultState);
-
+        sendResult(flipResult_i);
     }
 
-    private void resetCoin() {
+    private void sendResult(int flipResult_i) {
+		// TODO Auto-generated method stub
+
+            switch (flipResult_i) {
+            	case 0:
+            		resultText.setText("Green Thai");
+            		resultText.setTextColor(getResources().getColor(R.color.lime));
+                	break;                
+                case 1:
+                    resultText.setText("Roma Pizza");
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
+                    break;
+                case 2:
+                    resultText.setText("Quadro");
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
+                    break;
+                case 3:
+                    resultText.setText("la Flora");
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
+                    break;
+                case 4:
+                    resultText.setText("Pizza Hut");
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
+                    break;
+                case 5:
+                    resultText.setText("home");
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
+                    break;
+            }
+
+
+	}
+
+	private void resetCoin() {
         Log.d(TAG, "resetCoin()");
 
         // hide the animation and draw the reset image
@@ -818,17 +852,6 @@ public class CoinFlip extends Activity {
             // handled by animation callback
             // playCoinSound();
             // updateResultText(resultState, resultText);
-        } else {
-            // load the appropriate coin image based on the state
-            coinImageDrawable = coinImagesMap.get(resultState);
-            coinImage.setImageDrawable(coinImageDrawable);
-
-            // hide the animation and display the static image
-            displayCoinImage(true);
-            displayCoinAnimation(false);
-            playCoinSound();
-            updateResultText(resultState);
-            resumeListeners();
         }
     }
 
@@ -879,13 +902,11 @@ public class CoinFlip extends Activity {
             switch (resultState) {
                 case HEADS_HEADS:
                 case TAILS_HEADS:
-                    resultText.setText(R.string.heads);
                     resultText.setTextColor(getResources().getColor(R.color.lime));
                     break;
                 case HEADS_TAILS:
                 case TAILS_TAILS:
-                    resultText.setText(R.string.tails);
-                    resultText.setTextColor(getResources().getColor(R.color.red));
+                    resultText.setTextColor(getResources().getColor(R.color.lime));
                     break;
                 default:
                     resultText.setText(R.string.unknown);
