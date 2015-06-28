@@ -57,14 +57,6 @@ public class Settings extends PreferenceActivity implements
 
     private static final String KEY_COIN_DEF = "default";
 
-    private static final String KEY_SHAKE = "shake";
-
-    private static final int KEY_SHAKE_DEF = 2;
-
-    private static final String KEY_SOUND = "sound";
-
-    private static final boolean KEY_SOUND_DEF = true;
-
     private static final String KEY_STATS = "stats";
 
     private static final boolean KEY_STATS_DEF = false;
@@ -217,14 +209,6 @@ public class Settings extends PreferenceActivity implements
     }
 
 
-    // get the current value of the shake sensitivity preference
-    public static int getShakePref(final Context context) {
-        Log.d(TAG, "getShakePref()");
-        final int result = PreferenceManager.getDefaultSharedPreferences(
-                context).getInt(KEY_SHAKE, KEY_SHAKE_DEF);
-        Log.d(TAG, "result=" + result);
-        return result;
-    }
 
     // get the current value of the statistics preference
     public static boolean getStatsPref(final Context context) {

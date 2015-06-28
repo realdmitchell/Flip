@@ -77,7 +77,6 @@ public class CoinFlip extends Activity {
 
     private final Coin theCoin = new Coin();
 
-    private ShakeListener shaker;
 
     private OnClickListener tapper;
 
@@ -220,16 +219,7 @@ public class CoinFlip extends Activity {
         coinAnimationsMap = new EnumMap<CoinFlip.ResultState, AnimationDrawable>(ResultState.class);
         coinImagesMap = new EnumMap<CoinFlip.ResultState, Drawable>(ResultState.class);
 
-        // initialize the shake listener
-        if (shaker == null) {
-            shaker = new ShakeListener(this);
-            shaker.pause();
-            shaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
-                public void onShake() {
-                    flipCoin();
-                }
-            });
-        }
+
 
         // initialize the onclick listener
         if (tapper == null) {
@@ -328,14 +318,6 @@ public class CoinFlip extends Activity {
 
     private void resetInstructions() {
         Log.d(TAG, "resetInstructions()");
-
-        int shakeForce = Settings.getShakePref(this);
-
-        if (shakeForce == 0) {
-            instructionsText.setText(R.string.instructions_tap_tv);
-        } else {
-            instructionsText.setText(R.string.instructions_tap_shake_tv);
-        }
     }
 
     private ResultState updateState(final boolean flipResult) {
@@ -945,9 +927,6 @@ public class CoinFlip extends Activity {
 
     private void pauseListeners() {
         Log.d(TAG, "pauseListeners()");
-        if (shaker != null) {
-            shaker.pause();
-        }
         if (tapper != null) {
             mainLayout.setOnClickListener(null);
         }
@@ -956,15 +935,6 @@ public class CoinFlip extends Activity {
     private void resumeListeners() {
         Log.d(TAG, "resumeListeners()");
 
-        int shakeForce = Settings.getShakePref(this);
-
-        if (shaker != null) {
-            if (shakeForce == 0) {
-                shaker.pause();
-            } else {
-                shaker.resume(shakeForce);
-            }
-        }
         if (tapper != null) {
             mainLayout.setOnClickListener(tapper);
         }
